@@ -8,9 +8,7 @@ use Illuminate\Http\Request;
 
 class TaskController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    
     public function index(Request $request)
     {
         $query = Task::with('employee');
@@ -36,18 +34,12 @@ class TaskController extends Controller
         return view('tasks.index', compact('tasks', 'employees'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         $employees = Employee::all();
         return view('tasks.create', compact('employees'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         $validated = $request->validate([
@@ -64,27 +56,18 @@ class TaskController extends Controller
             ->with('success', 'Task created successfully.');
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(Task $task)
     {
         $task->load('employee');
         return view('tasks.show', compact('task'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(Task $task)
     {
         $employees = Employee::all();
         return view('tasks.edit', compact('task', 'employees'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, Task $task)
     {
         $validated = $request->validate([
@@ -101,9 +84,6 @@ class TaskController extends Controller
             ->with('success', 'Task updated successfully.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Task $task)
     {
         $task->delete();

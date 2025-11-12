@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Employee extends Model
 {
-    /** @use HasFactory<\Database\Factories\EmployeeFactory> */
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
@@ -18,9 +17,6 @@ class Employee extends Model
         'designation',
     ];
 
-    /**
-     * Get the tasks for the employee.
-     */
     public function tasks()
     {
         return $this->hasMany(Task::class);

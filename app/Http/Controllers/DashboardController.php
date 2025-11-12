@@ -39,7 +39,7 @@ class DashboardController extends Controller
 
         $employees = $query->latest()->paginate(10);
         
-        // Get unique designations for filter dropdown
+        // Get filter dropdown
         $designations = Employee::select('designation')
             ->distinct()
             ->whereNotNull('designation')

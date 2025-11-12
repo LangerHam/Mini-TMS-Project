@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Task extends Model
 {
-    /** @use HasFactory<\Database\Factories\TaskFactory> */
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
@@ -23,9 +22,6 @@ class Task extends Model
         'due_date' => 'date',
     ];
 
-    /**
-     * Get the employee that owns the task.
-     */
     public function employee()
     {
         return $this->belongsTo(Employee::class);
